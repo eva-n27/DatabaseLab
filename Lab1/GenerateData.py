@@ -28,7 +28,7 @@ for i in range(5):
                str(essn + i * 10 + j), ' ',
                city[i] + street[j], ' ',
                str(salary + i * 10 + j), ' ',
-               str(essn + i * 20 ), ' ',
+               str(essn + i * 10), ' ',
                'D' + str(i + 1), '\n']
         f.writelines(lst)
 
