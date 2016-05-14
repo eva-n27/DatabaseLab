@@ -15,10 +15,27 @@
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/Lab3$Lab3.coverage" NAME="Lab3 Coverage Results" MODIFIED="1463071566146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Lab3$initDatabase.coverage" NAME="initDatabase Coverage Results" MODIFIED="1463135056633" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Lab3$initDatabase.coverage" NAME="initDatabase Coverage Results" MODIFIED="1463235902783" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DatabaseView">
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="MySQL - school_db_system@localhost" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -29,51 +46,42 @@
       <file leaf-file-name="initDatabase.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/initDatabase.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1496">
-              <caret line="22" column="11" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
+            <state relative-caret-position="-7">
+              <caret line="38" column="49" selection-start-line="38" selection-start-column="39" selection-end-line="38" selection-end-column="49" />
               <folding>
-                <marker date="1463135054857" expanded="true" signature="708:929" placeholder="create table... institute" />
-                <marker date="1463135054857" expanded="true" signature="1000:1487" placeholder="create table... student" />
-                <marker date="1463135054857" expanded="true" signature="1558:2050" placeholder="create table... teacher" />
-                <marker date="1463135054857" expanded="true" signature="2121:2343" placeholder="create table... department" />
-                <marker date="1463135054857" expanded="true" signature="2414:2908" placeholder="create table... stuff" />
-                <marker date="1463135054857" expanded="true" signature="2981:3117" placeholder="create table... login" />
-                <marker date="1463135054857" expanded="true" signature="3188:3488" placeholder="create table... course" />
-                <marker date="1463135054857" expanded="true" signature="3559:3929" placeholder="create table... grades" />
+                <marker date="1463236651322" expanded="true" signature="707:868" placeholder="create table... institute" />
+                <marker date="1463236651322" expanded="true" signature="707:869" placeholder="create table... institute" />
+                <marker date="1463236651322" expanded="true" signature="950:1190" placeholder="create table... discipline" />
+                <marker date="1463236651322" expanded="true" signature="1270:1718" placeholder="create table... student" />
+                <marker date="1463236651322" expanded="true" signature="1789:2292" placeholder="create table... teacher" />
+                <marker date="1463236651322" expanded="true" signature="2368:2673" placeholder="create table... stuff" />
+                <marker date="1463236651322" expanded="true" signature="2746:2983" placeholder="create table... login" />
+                <marker date="1463236651322" expanded="true" signature="3054:3327" placeholder="create table... course" />
+                <marker date="1463236651322" expanded="true" signature="3398:3466" placeholder="create table... selection" />
+                <marker date="1463236651322" expanded="true" signature="3398:3468" placeholder="create table... selection" />
+                <marker date="1463236651322" expanded="true" signature="3398:3470" placeholder="create table... selection" />
+                <marker date="1463236651322" expanded="true" signature="3398:3475" placeholder="create table... selection" />
+                <marker date="1463236651322" expanded="true" signature="3398:3477" placeholder="create table... selection" />
+                <marker date="1463236651322" expanded="true" signature="3398:3515" placeholder="create table... selection" />
+                <marker date="1463236651322" expanded="true" signature="3398:3536" placeholder="create table... selection" />
+                <marker date="1463236651322" expanded="true" signature="3398:3572" placeholder="create table... selection" />
+                <marker date="1463236651322" expanded="true" signature="3398:3577" placeholder="create table... selection" />
+                <marker date="1463236651322" expanded="true" signature="3398:3593" placeholder="create table... selection" />
+                <marker date="1463236651322" expanded="true" signature="3398:3666" placeholder="create table... selection" />
+                <marker date="1463236651322" expanded="true" signature="3398:3750" placeholder="create table... selection" />
+                <marker date="1463236651322" expanded="true" signature="3797:4280" placeholder="create table... grades" />
+                <marker date="1463236651322" expanded="true" signature="4530:4550" placeholder="drop table i... " />
+                <marker date="1463236651322" expanded="true" signature="4582:4600" placeholder="drop table s... " />
+                <marker date="1463236651322" expanded="true" signature="4632:4650" placeholder="drop table t... " />
+                <marker date="1463236651322" expanded="true" signature="4682:4703" placeholder="drop table d... " />
+                <marker date="1463236651322" expanded="true" signature="4735:4751" placeholder="drop table s... " />
+                <marker date="1463236651322" expanded="true" signature="4783:4799" placeholder="drop table l... " />
+                <marker date="1463236651322" expanded="true" signature="4831:4848" placeholder="drop table c... " />
+                <marker date="1463236651322" expanded="true" signature="4880:4900" placeholder="drop table g... " />
+                <marker date="1463236651322" expanded="true" signature="4930:4948" placeholder="drop table m... " />
+                <marker date="1463236651322" expanded="true" signature="5256:5277" placeholder="select count... s" />
+                <marker date="1463236651322" expanded="true" signature="5256:5300" placeholder="select count... selection" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-152">
-              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-              <folding>
-                <element signature="e#35#66#0" expanded="true" />
-                <marker date="1463072123797" expanded="true" signature="810:852" placeholder="select passw... login" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="try_.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/try_.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="562">
-              <caret line="47" column="26" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Homepage.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Homepage.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2331">
-              <caret line="111" column="0" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -87,6 +95,13 @@
         <option value="$PROJECT_DIR$/Homepage.py" />
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/try_.py" />
+        <option value="dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.student" />
+        <option value="dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.institute" />
+        <option value="dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.stuff" />
+        <option value="dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.teacher" />
+        <option value="dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.course" />
+        <option value="dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.login" />
+        <option value="dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.grades" />
         <option value="$PROJECT_DIR$/initDatabase.py" />
       </list>
     </option>
@@ -128,6 +143,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -148,15 +164,15 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../_Lab3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
   </component>
   <component name="RunManager" selected="Python.initDatabase">
     <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
@@ -432,15 +448,15 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25294748" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27063236" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295711" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295711" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.108788855" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32731378" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -449,6 +465,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295711" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295711" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -462,19 +479,509 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.login">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.stuff">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.student">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="27" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.institute">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.discipline">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.teacher">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="36" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/initDatabase.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1890">
+          <caret line="90" column="29" selection-start-line="90" selection-start-column="29" selection-end-line="90" selection-end-column="29" />
+          <folding>
+            <marker date="1463236651322" expanded="true" signature="707:868" placeholder="create table... institute" />
+            <marker date="1463236651322" expanded="true" signature="707:869" placeholder="create table... institute" />
+            <marker date="1463236651322" expanded="true" signature="950:1190" placeholder="create table... discipline" />
+            <marker date="1463236651322" expanded="true" signature="1270:1718" placeholder="create table... student" />
+            <marker date="1463236651322" expanded="true" signature="1789:2292" placeholder="create table... teacher" />
+            <marker date="1463236651322" expanded="true" signature="2368:2673" placeholder="create table... stuff" />
+            <marker date="1463236651322" expanded="true" signature="2746:2983" placeholder="create table... login" />
+            <marker date="1463236651322" expanded="true" signature="3054:3327" placeholder="create table... course" />
+            <marker date="1463236651322" expanded="true" signature="3398:3466" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3468" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3470" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3475" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3477" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3515" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3536" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3572" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3577" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3593" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3666" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3750" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3797:4280" placeholder="create table... grades" />
+            <marker date="1463236651322" expanded="true" signature="4530:4550" placeholder="drop table i... " />
+            <marker date="1463236651322" expanded="true" signature="4582:4600" placeholder="drop table s... " />
+            <marker date="1463236651322" expanded="true" signature="4632:4650" placeholder="drop table t... " />
+            <marker date="1463236651322" expanded="true" signature="4682:4703" placeholder="drop table d... " />
+            <marker date="1463236651322" expanded="true" signature="4735:4751" placeholder="drop table s... " />
+            <marker date="1463236651322" expanded="true" signature="4783:4799" placeholder="drop table l... " />
+            <marker date="1463236651322" expanded="true" signature="4831:4848" placeholder="drop table c... " />
+            <marker date="1463236651322" expanded="true" signature="4880:4900" placeholder="drop table g... " />
+            <marker date="1463236651322" expanded="true" signature="4930:4948" placeholder="drop table m... " />
+            <marker date="1463236651322" expanded="true" signature="5256:5277" placeholder="select count... s" />
+            <marker date="1463236651322" expanded="true" signature="5256:5300" placeholder="select count... selection" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.course">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.login">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.stuff">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.student">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="27" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.institute">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.discipline">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.teacher">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="36" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/initDatabase.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1071">
+          <caret line="51" column="46" selection-start-line="51" selection-start-column="46" selection-end-line="51" selection-end-column="46" />
+          <folding>
+            <marker date="1463236651322" expanded="true" signature="707:868" placeholder="create table... institute" />
+            <marker date="1463236651322" expanded="true" signature="707:869" placeholder="create table... institute" />
+            <marker date="1463236651322" expanded="true" signature="950:1190" placeholder="create table... discipline" />
+            <marker date="1463236651322" expanded="true" signature="1270:1718" placeholder="create table... student" />
+            <marker date="1463236651322" expanded="true" signature="1789:2292" placeholder="create table... teacher" />
+            <marker date="1463236651322" expanded="true" signature="2368:2673" placeholder="create table... stuff" />
+            <marker date="1463236651322" expanded="true" signature="2746:2983" placeholder="create table... login" />
+            <marker date="1463236651322" expanded="true" signature="3054:3327" placeholder="create table... course" />
+            <marker date="1463236651322" expanded="true" signature="3398:3466" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3468" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3470" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3475" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3477" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3515" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3536" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3572" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3577" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3593" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3666" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3750" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3797:4280" placeholder="create table... grades" />
+            <marker date="1463236651322" expanded="true" signature="4530:4550" placeholder="drop table i... " />
+            <marker date="1463236651322" expanded="true" signature="4582:4600" placeholder="drop table s... " />
+            <marker date="1463236651322" expanded="true" signature="4632:4650" placeholder="drop table t... " />
+            <marker date="1463236651322" expanded="true" signature="4682:4703" placeholder="drop table d... " />
+            <marker date="1463236651322" expanded="true" signature="4735:4751" placeholder="drop table s... " />
+            <marker date="1463236651322" expanded="true" signature="4783:4799" placeholder="drop table l... " />
+            <marker date="1463236651322" expanded="true" signature="4831:4848" placeholder="drop table c... " />
+            <marker date="1463236651322" expanded="true" signature="4880:4900" placeholder="drop table g... " />
+            <marker date="1463236651322" expanded="true" signature="4930:4948" placeholder="drop table m... " />
+            <marker date="1463236651322" expanded="true" signature="5256:5277" placeholder="select count... s" />
+            <marker date="1463236651322" expanded="true" signature="5256:5300" placeholder="select count... selection" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.login">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.stuff">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.student">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="27" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.institute">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.discipline">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.teacher">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/initDatabase.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1463236651322" expanded="true" signature="707:868" placeholder="create table... institute" />
+            <marker date="1463236651322" expanded="true" signature="707:869" placeholder="create table... institute" />
+            <marker date="1463236651322" expanded="true" signature="950:1190" placeholder="create table... discipline" />
+            <marker date="1463236651322" expanded="true" signature="1270:1718" placeholder="create table... student" />
+            <marker date="1463236651322" expanded="true" signature="1789:2292" placeholder="create table... teacher" />
+            <marker date="1463236651322" expanded="true" signature="2368:2673" placeholder="create table... stuff" />
+            <marker date="1463236651322" expanded="true" signature="2746:2983" placeholder="create table... login" />
+            <marker date="1463236651322" expanded="true" signature="3054:3327" placeholder="create table... course" />
+            <marker date="1463236651322" expanded="true" signature="3398:3466" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3468" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3470" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3475" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3477" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3515" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3536" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3572" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3577" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3593" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3666" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3750" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3797:4280" placeholder="create table... grades" />
+            <marker date="1463236651322" expanded="true" signature="4530:4550" placeholder="drop table i... " />
+            <marker date="1463236651322" expanded="true" signature="4582:4600" placeholder="drop table s... " />
+            <marker date="1463236651322" expanded="true" signature="4632:4650" placeholder="drop table t... " />
+            <marker date="1463236651322" expanded="true" signature="4682:4703" placeholder="drop table d... " />
+            <marker date="1463236651322" expanded="true" signature="4735:4751" placeholder="drop table s... " />
+            <marker date="1463236651322" expanded="true" signature="4783:4799" placeholder="drop table l... " />
+            <marker date="1463236651322" expanded="true" signature="4831:4848" placeholder="drop table c... " />
+            <marker date="1463236651322" expanded="true" signature="4880:4900" placeholder="drop table g... " />
+            <marker date="1463236651322" expanded="true" signature="4930:4948" placeholder="drop table m... " />
+            <marker date="1463236651322" expanded="true" signature="5256:5277" placeholder="select count... s" />
+            <marker date="1463236651322" expanded="true" signature="5256:5300" placeholder="select count... selection" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.login">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.stuff">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.student">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="27" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.teacher">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/initDatabase.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1463236651322" expanded="true" signature="707:868" placeholder="create table... institute" />
+            <marker date="1463236651322" expanded="true" signature="707:869" placeholder="create table... institute" />
+            <marker date="1463236651322" expanded="true" signature="950:1190" placeholder="create table... discipline" />
+            <marker date="1463236651322" expanded="true" signature="1270:1718" placeholder="create table... student" />
+            <marker date="1463236651322" expanded="true" signature="1789:2292" placeholder="create table... teacher" />
+            <marker date="1463236651322" expanded="true" signature="2368:2673" placeholder="create table... stuff" />
+            <marker date="1463236651322" expanded="true" signature="2746:2983" placeholder="create table... login" />
+            <marker date="1463236651322" expanded="true" signature="3054:3327" placeholder="create table... course" />
+            <marker date="1463236651322" expanded="true" signature="3398:3466" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3468" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3470" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3475" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3477" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3515" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3536" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3572" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3577" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3593" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3666" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3750" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3797:4280" placeholder="create table... grades" />
+            <marker date="1463236651322" expanded="true" signature="4530:4550" placeholder="drop table i... " />
+            <marker date="1463236651322" expanded="true" signature="4582:4600" placeholder="drop table s... " />
+            <marker date="1463236651322" expanded="true" signature="4632:4650" placeholder="drop table t... " />
+            <marker date="1463236651322" expanded="true" signature="4682:4703" placeholder="drop table d... " />
+            <marker date="1463236651322" expanded="true" signature="4735:4751" placeholder="drop table s... " />
+            <marker date="1463236651322" expanded="true" signature="4783:4799" placeholder="drop table l... " />
+            <marker date="1463236651322" expanded="true" signature="4831:4848" placeholder="drop table c... " />
+            <marker date="1463236651322" expanded="true" signature="4880:4900" placeholder="drop table g... " />
+            <marker date="1463236651322" expanded="true" signature="4930:4948" placeholder="drop table m... " />
+            <marker date="1463236651322" expanded="true" signature="5256:5277" placeholder="select count... s" />
+            <marker date="1463236651322" expanded="true" signature="5256:5300" placeholder="select count... selection" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/try_.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="987">
+          <caret line="47" column="26" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Homepage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2331">
+          <caret line="111" column="0" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/initDatabase.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
           <caret line="7" column="38" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
           <folding>
-            <marker date="1463135054857" expanded="true" signature="708:929" placeholder="create table... institute" />
-            <marker date="1463135054857" expanded="true" signature="1000:1487" placeholder="create table... student" />
-            <marker date="1463135054857" expanded="true" signature="1558:2050" placeholder="create table... teacher" />
-            <marker date="1463135054857" expanded="true" signature="2121:2343" placeholder="create table... department" />
-            <marker date="1463135054857" expanded="true" signature="2414:2908" placeholder="create table... stuff" />
-            <marker date="1463135054857" expanded="true" signature="2981:3117" placeholder="create table... login" />
-            <marker date="1463135054857" expanded="true" signature="3188:3488" placeholder="create table... course" />
-            <marker date="1463135054857" expanded="true" signature="3559:3929" placeholder="create table... grades" />
+            <marker date="1463236651322" expanded="true" signature="707:868" placeholder="create table... institute" />
+            <marker date="1463236651322" expanded="true" signature="707:869" placeholder="create table... institute" />
+            <marker date="1463236651322" expanded="true" signature="950:1190" placeholder="create table... discipline" />
+            <marker date="1463236651322" expanded="true" signature="1270:1718" placeholder="create table... student" />
+            <marker date="1463236651322" expanded="true" signature="1789:2292" placeholder="create table... teacher" />
+            <marker date="1463236651322" expanded="true" signature="2368:2673" placeholder="create table... stuff" />
+            <marker date="1463236651322" expanded="true" signature="2746:2983" placeholder="create table... login" />
+            <marker date="1463236651322" expanded="true" signature="3054:3327" placeholder="create table... course" />
+            <marker date="1463236651322" expanded="true" signature="3398:3466" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3468" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3470" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3475" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3477" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3515" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3536" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3572" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3577" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3593" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3666" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3750" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3797:4280" placeholder="create table... grades" />
+            <marker date="1463236651322" expanded="true" signature="4530:4550" placeholder="drop table i... " />
+            <marker date="1463236651322" expanded="true" signature="4582:4600" placeholder="drop table s... " />
+            <marker date="1463236651322" expanded="true" signature="4632:4650" placeholder="drop table t... " />
+            <marker date="1463236651322" expanded="true" signature="4682:4703" placeholder="drop table d... " />
+            <marker date="1463236651322" expanded="true" signature="4735:4751" placeholder="drop table s... " />
+            <marker date="1463236651322" expanded="true" signature="4783:4799" placeholder="drop table l... " />
+            <marker date="1463236651322" expanded="true" signature="4831:4848" placeholder="drop table c... " />
+            <marker date="1463236651322" expanded="true" signature="4880:4900" placeholder="drop table g... " />
+            <marker date="1463236651322" expanded="true" signature="4930:4948" placeholder="drop table m... " />
+            <marker date="1463236651322" expanded="true" signature="5256:5277" placeholder="select count... s" />
+            <marker date="1463236651322" expanded="true" signature="5256:5300" placeholder="select count... selection" />
           </folding>
         </state>
       </provider>
@@ -483,10 +990,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#35#66#0" expanded="true" />
-            <marker date="1463072123797" expanded="true" signature="810:852" placeholder="select passw... login" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -494,7 +997,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="546">
           <caret line="26" column="22" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -502,7 +1004,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2331">
           <caret line="111" column="0" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -511,42 +1012,204 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2331">
           <caret line="111" column="0" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/try_.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="562">
+        <state relative-caret-position="987">
           <caret line="47" column="26" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-152">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding>
-            <element signature="e#35#66#0" expanded="true" />
-            <marker date="1463072123797" expanded="true" signature="810:852" placeholder="select passw... login" />
-          </folding>
+        <state relative-caret-position="436">
+          <caret line="38" column="11" selection-start-line="38" selection-start-column="11" selection-end-line="38" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/9a5763f3-5e34-4a15-9429-53bf4fb60d74/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.student">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="27" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.institute">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.stuff">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.grades">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python27/Lib/site-packages/MySQLdb/connections.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.teacher">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="36" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.login">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.discipline">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.course">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="2" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="2" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.manager">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3b01734d/9a5763f3-5e34-4a15-9429-53bf4fb60d74/school_db_system.selection">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/initDatabase.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1496">
-          <caret line="22" column="11" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
+        <state relative-caret-position="-7">
+          <caret line="38" column="49" selection-start-line="38" selection-start-column="39" selection-end-line="38" selection-end-column="49" />
           <folding>
-            <marker date="1463135054857" expanded="true" signature="708:929" placeholder="create table... institute" />
-            <marker date="1463135054857" expanded="true" signature="1000:1487" placeholder="create table... student" />
-            <marker date="1463135054857" expanded="true" signature="1558:2050" placeholder="create table... teacher" />
-            <marker date="1463135054857" expanded="true" signature="2121:2343" placeholder="create table... department" />
-            <marker date="1463135054857" expanded="true" signature="2414:2908" placeholder="create table... stuff" />
-            <marker date="1463135054857" expanded="true" signature="2981:3117" placeholder="create table... login" />
-            <marker date="1463135054857" expanded="true" signature="3188:3488" placeholder="create table... course" />
-            <marker date="1463135054857" expanded="true" signature="3559:3929" placeholder="create table... grades" />
+            <marker date="1463236651322" expanded="true" signature="707:868" placeholder="create table... institute" />
+            <marker date="1463236651322" expanded="true" signature="707:869" placeholder="create table... institute" />
+            <marker date="1463236651322" expanded="true" signature="950:1190" placeholder="create table... discipline" />
+            <marker date="1463236651322" expanded="true" signature="1270:1718" placeholder="create table... student" />
+            <marker date="1463236651322" expanded="true" signature="1789:2292" placeholder="create table... teacher" />
+            <marker date="1463236651322" expanded="true" signature="2368:2673" placeholder="create table... stuff" />
+            <marker date="1463236651322" expanded="true" signature="2746:2983" placeholder="create table... login" />
+            <marker date="1463236651322" expanded="true" signature="3054:3327" placeholder="create table... course" />
+            <marker date="1463236651322" expanded="true" signature="3398:3466" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3468" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3470" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3475" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3477" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3515" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3536" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3572" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3577" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3593" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3666" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3398:3750" placeholder="create table... selection" />
+            <marker date="1463236651322" expanded="true" signature="3797:4280" placeholder="create table... grades" />
+            <marker date="1463236651322" expanded="true" signature="4530:4550" placeholder="drop table i... " />
+            <marker date="1463236651322" expanded="true" signature="4582:4600" placeholder="drop table s... " />
+            <marker date="1463236651322" expanded="true" signature="4632:4650" placeholder="drop table t... " />
+            <marker date="1463236651322" expanded="true" signature="4682:4703" placeholder="drop table d... " />
+            <marker date="1463236651322" expanded="true" signature="4735:4751" placeholder="drop table s... " />
+            <marker date="1463236651322" expanded="true" signature="4783:4799" placeholder="drop table l... " />
+            <marker date="1463236651322" expanded="true" signature="4831:4848" placeholder="drop table c... " />
+            <marker date="1463236651322" expanded="true" signature="4880:4900" placeholder="drop table g... " />
+            <marker date="1463236651322" expanded="true" signature="4930:4948" placeholder="drop table m... " />
+            <marker date="1463236651322" expanded="true" signature="5256:5277" placeholder="select count... s" />
+            <marker date="1463236651322" expanded="true" signature="5256:5300" placeholder="select count... selection" />
           </folding>
         </state>
       </provider>

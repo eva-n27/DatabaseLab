@@ -22,6 +22,9 @@ urlpatterns = [
     url(r'^student_home$', student_homepage),
     url(r'^teacher_home$', teacher_homepage),
     url(r'^stuff_home$', stuff_homepage),
+    url(r'^manager_home$', manager_homepage),
+    url(r'^manager_teacher$', manager_teacher),
+    url(r'^manager_student$', manager_student),
     url(r'^logout$', logout),
     url(r'^student_setting$', student_setting),
     url(r'^student_setting/change$', student_setting_change),
@@ -30,5 +33,13 @@ urlpatterns = [
     url(r'^stuff_setting$', stuff_setting),
     url(r'^stuff_setting/change$', stuff_setting_change),
     url(r'^register$', register),
+    url(r'^section$', section),
+    url(r'^teacher_course/$', teacher_course),
+    url(r'^student_course/$', student_course),
+    url(r'^stuff_course/$', stuff_course),
+    url(r'^stuff_look/$', stuff_look),
+    url(r'^teacher_delete/$', teacher_delete),
+    url(r'^student_delete/$', student_delete),
+    url(r'^student_select/$', student_select),
 
 ]

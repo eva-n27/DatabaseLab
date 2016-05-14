@@ -1,10 +1,10 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>个人中心</title>
+<title>教师管理</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+<meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
  <!-- Bootstrap Core CSS -->
@@ -16,7 +16,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="../static/js/jquery.min.js"></script>
 <!----webfonts--->
 <link href='http://fonts.useso.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
-<!---//webfonts--->  
+<!---//webfonts--->
 <!-- Bootstrap Core JavaScript -->
 <script src="../static/js/bootstrap.min.js"></script>
 </head>
@@ -35,18 +35,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
 			    <li class="dropdown">
 	        		<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="../static/images/user.PNG"></a>
 	        		<ul class="dropdown-menu">
 						<li class="dropdown-menu-header text-center">
-							<strong>修改个人信息</strong>
+							<strong>个人信息</strong>
 						</li>
 						<li class="m_2"><a href="#"><i class="fa fa-user"></i> {{ name }} <span class="label label-info">42</span></a></li>
 						<li class="m_2"><a href="#"><i class="fa fa-envelope-o"></i> {{ email  }}<span class="label label-success">42</span></a></li>
 						<li class="m_2"><a href="#"><i class="fa fa-phone"></i> {{ telephone }}<span class="label label-danger">42</span></a></li>
-						<li class="m_2"><a href="#"><i class="fa fa-calendar"></i> {{ stuff_no }} <span class="label label-warning">42</span></a></li>
+						<li class="m_2"><a href="#"><i class="fa fa-calendar"></i> {{ m_no }} <span class="label label-warning">42</span></a></li>
+						<li class="m_2"><a href="#"><i class="fa fa-university"></i> {{ i_name }} <span class="label label-warning">42</span></a></li>
+						<li class="m_2"><a href="#"><i class="fa fa-home"></i> {{ location }} <span class="label label-warning">42</span></a></li>
 						<li class="divider"></li>
-						<li class="m_2"><a href="/stuff_setting"><i class="fa fa-cog"></i> Settings</a></li>
 						<li class="m_2"><a href="/logout"><i class="fa fa-lock"></i> Logout</a></li>
 	        		</ul>
 	      		</li>
@@ -58,11 +60,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="/stuff_home"><i class="fa fa-home fa-fw nav_icon"></i>主页</a>
+                            <a href="/manager_home"><i class="fa fa-home fa-fw nav_icon"></i>主页</a>
                         </li>
                         <li>
-                            <a href="/stuff_course"><i class="fa fa-laptop nav_icon"></i>课程管理</a>
+                            <a href="/manager_teacher"><i class="fa fa-laptop nav_icon"></i>查看教师</a>
                         </li>
+                        <li>
+                            <a href="/manager_student"><i class="fa fa-bookmark nav_icon"></i>查看学生</a>
+                        </li>
+                    </ul>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -72,40 +78,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div id="page-wrapper">
         <div class="col-md-12 graphs">
 	   <div class="xs">
-  	    <h2>修改个人信息</h2>
-  	    <div class="well1 white">
-        <form method="post" action='/stuff_setting/change' class="form-floating ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-url ng-valid-pattern" novalidate="novalidate" ng-submit="submit()">
-          <fieldset>
-            <div class="form-group">
-              <label class="control-label"><h3>姓名</h3></label>
-                <h4><a>{{ name }}</a></h4>
-            </div>
-            <div class="form-group">
-              <label class="control-label"><h3>职工号</h3></label></i>
-                <h4><a>{{ stuff_no }}</a></h4>
-            </div>
-            <div class="form-group">
-              <label class="control-label"><h3>身份证号</h3></label>
-                <h4><a>{{ id }}</a></h4>
-            </div>
-            <div class="form-group">
-              <label class="control-label"><h3>Email</h3></label>
-              <input type="email" name="email"  class="form-control1 ng-invalid ng-valid-email ng-invalid-required ng-touched" ng-model="model.email" required="">
-            </div>
-            <div class="form-group">
-              <label class="control-label"><h3>电话</h3></label>
-              <input type="url" name="telephone" class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched" ng-model="model.url" required="">
-            </div>
-            <div class="form-group">
-              <button type="submit" class="btn btn-primary">Submit</button>
-              <button type="reset" class="btn btn-default">Reset</button>
-            </div>
-          </fieldset>
-        </form>
-      </div>
-    </div>
-    <div class="copy_layout">
-      <p>Copyright &copy; 2016.Company name All rights reserved. Powered by Zip Xiang. </p></div>
+  	 <h3>{{ i_name }}学院的老师</h3>
+  	<div class="bs-example4" data-example-id="contextual-table">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>教师号</th>
+          <th>教师姓名</th>
+        </tr>
+      </thead>
+      <tbody>
+       {% for teacher in info_ %}
+      <tr class="active">
+          <td>{{ teacher.t_no }}</td>
+          <td>{{ teacher.teacher_name }}</td>
+       </tr>
+       {% endfor %}
+      </tbody>
+    </table>
+   </div>
+
+  </div>
+  <div class="copy_layout">
+       <p>Copyright &copy; 2016.Company name All rights reserved. Powered by Zip Xiang. </p></div>
+   </div>
    </div>
       </div>
       <!-- /#page-wrapper -->

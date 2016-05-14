@@ -7,6 +7,7 @@ class SchoolDBSystem:
     def __init__(self):
         self.conn = MySQLdb.connect(host='localhost', user='root', passwd='24678', port=3306)
         self.cur = self.conn.cursor()
+        self.conn.select_db('school_db_system')
 
     def __del__(self):
         """
@@ -28,32 +29,34 @@ class SchoolDBSystem:
         创建一个新的数据库中的表项
         :return:
         """
-        self.conn.select_db('school_db_system')
-
         # 学院表
         self.cur.execute('create table institute'
                          '(i_name VARCHAR (100) NOT NULL PRIMARY KEY ,'  # 院系名称
-                         'location VARCHAR (100) NOT NULL,'  # 院系地点
-                         'telephone VARCHAR (20));'
+                         'location VARCHAR (100) NOT NULL);'  # 院系地点;'
                          )
 
+        # 专业表
+        self.cur.execute('create table discipline'
+                         '(d_name VARCHAR (100) NOT NULL PRIMARY KEY ,'  # 专业名称
+                         'i_name  VARCHAR (100) NOT NULL,'
+                         'FOREIGN KEY (i_name) REFERENCES institute(i_name));'  # 院系地点;'
+                         )
         # 学生表
         self.cur.execute('create table student'
-                         '(student_no INT PRIMARY KEY NOT NULL , '
-                         'id INT NOT NULL , '
-                         'admission_time VARCHAR(20) NOT NULL ,'  # 入学时间
-                         'i_name VARCHAR(100) NOT  NULL ,'
-                         'grade INT NOT NULL,'
+                         '(student_no VARCHAR(20)  PRIMARY KEY NOT NULL , '
+                         'student_name VARCHAR (20) NOT NULL,'
+                         'id VARCHAR(20) NOT NULL , '
+                         'd_name VARCHAR(100) NOT  NULL ,'
                          'telephone varchar(20),'
                          'email varchar(100),'
-                         'FOREIGN KEY (i_name) REFERENCES institute(i_name));'
+                         'FOREIGN KEY (d_name) REFERENCES discipline(d_name));'
                          )
 
         # 教师表
         self.cur.execute('create table teacher'
-                         '(t_no INT PRIMARY KEY NOT NULL , '
-                         'id INT NOT NULL , '
-                         'entry_time VARCHAR(20) NOT NULL ,'  # 开始任教时间
+                         '(t_no VARCHAR(20)  PRIMARY KEY NOT NULL , '
+                         'id VARCHAR(20) NOT NULL , '
+                         'teacher_name VARCHAR(100) NOT  NULL ,'
                          'i_name VARCHAR(100) NOT  NULL ,'
                          'telephone varchar(20),'
                          'email varchar(100),'
@@ -61,48 +64,48 @@ class SchoolDBSystem:
                          'FOREIGN KEY (i_name) REFERENCES institute(i_name));'
                          )
 
-        # 部门表
-        self.cur.execute('create table department'
-                         '(d_name VARCHAR (100) NOT NULL PRIMARY KEY ,'  # 部门名称
-                         'location VARCHAR (100) NOT NULL,'  # 院系地点
-                         'telephone VARCHAR (20));'
-                         )
-
-        # 职工表
+        # 教务处工作人员表
         self.cur.execute('create table stuff'
-                         '(stuff_no INT PRIMARY KEY NOT NULL , '
-                         'id INT NOT NULL , '
-                         'work_time VARCHAR(20) NOT NULL ,'  # 开始工作时间
-                         'd_name VARCHAR(100) NOT  NULL ,'
+                         '(stuff_no VARCHAR(20)  PRIMARY KEY NOT NULL , '
+                         'id VARCHAR(20) NOT NULL ,'
+                         'stuff_name VARCHAR(100) NOT  NULL ,'
                          'telephone varchar(20),'
-                         'email varchar(100),'
-                         'location VARCHAR (100) NOT NULL,'
-                         'FOREIGN KEY (d_name) REFERENCES department(d_name));'
+                         'email varchar(100));'
                          )
 
         # 账号密码表
         self.cur.execute('create table login'
-                         '(p_no INT PRIMARY KEY NOT NULL,'
+                         '(username VARCHAR(20) PRIMARY KEY NOT NULL,'
+                         'class VARCHAR(20) NOT NULL,'  # 类别：学生student、教师teacher、职工stuff
                          'password VARCHAR(20) NOT NULL );'
                          )
 
         # 课程表
         self.cur.execute('create table course'
-                         '(c_no INT PRIMARY KEY NOT NULL ,'
-                         't_no INT NOT NULL,'
-                         'date VARCHAR(20),'
+                         '(c_no VARCHAR(20)  PRIMARY KEY NOT NULL ,'
+                         't_no VARCHAR(20)  NOT NULL,'
                          'c_name VARCHAR (100) NOT NULL,'
                          'FOREIGN KEY (t_no) REFERENCES teacher(t_no));'
                          )
 
-        # 成绩表
-        self.cur.execute('create table grades'
-                         '(student_no INT NOT NULL,'
-                         'c_no INT NOT NULL,'
-                         'grade INT,'
-                         'FOREIGN KEY (student_no) REFERENCES student(student_no),'
+        # 选课表
+        self.cur.execute('create table selection'
+                         '(c_no VARCHAR(20)  NOT NULL ,'
+                         'student_no VARCHAR(20) NOT NULL,'
+                         'PRIMARY KEY(c_no, student_no),'
                          'FOREIGN KEY (c_no) REFERENCES course(c_no),'
-                         'PRIMARY KEY (student_no, c_no));'
+                         'FOREIGN KEY (student_no) REFERENCES student(student_no));')
+
+        # 教学主管表
+        self.cur.execute('create table manager'
+                         '(m_no VARCHAR(20)  NOT NULL,'
+                         'id VARCHAR(20) NOT NULL , '
+                         'm_name VARCHAR(100) NOT  NULL ,'
+                         'i_name VARCHAR(100) NOT  NULL ,'
+                         'telephone varchar(20),'
+                         'email varchar(100),'
+                         'location VARCHAR (100) NOT NULL,'
+                         'FOREIGN KEY (i_name) REFERENCES institute(i_name));'
                          )
 
     def delete_tables(self):
@@ -110,19 +113,39 @@ class SchoolDBSystem:
         删除数据库和对应的表项
         :return:
         """
+        self.conn.select_db('school_db_system')
         self.cur.execute('SET foreign_key_checks=0')
-        self.cur.execute('truncate table institute')
-        self.cur.execute('truncate table student')
-        self.cur.execute('truncate table teacher')
-        self.cur.execute('truncate table department')
-        self.cur.execute('truncate table stuff')
-        self.cur.execute('truncate table login')
-        self.cur.execute('truncate table course')
-        self.cur.execute('truncate table grades')
+        # self.cur.execute('drop table institute;')
+        # self.cur.execute('drop table student;')
+        # self.cur.execute('drop table teacher;')
+        # self.cur.execute('drop table discipline;')
+        # self.cur.execute('drop table stuff;')
+        # self.cur.execute('drop table login;')
+        # self.cur.execute('drop table course;')
+        # self.cur.execute('drop table selection;')
+        self.cur.execute('drop table manager;')
         self.cur.execute('SET foreign_key_checks=1')
 
+    def delete_database(self):
+        """
+        删除数据库
+        :return:
+        """
+        self.cur.execute('drop database school_db_system;')
+
+    def test(self):
+        """
+        测试sql语句
+        :return:
+        """
+        self.cur.execute('select count(*) from selection group by c_no')
+        data = self.cur.fetchall()
+        print data[0][0]
 
 if __name__ == "__main__":
     s = SchoolDBSystem()
-    s.create_database()
+    # s.delete_database()
+    s.delete_tables()
+    # s.create_database()
     s.create_tables()
+    # s.test()
