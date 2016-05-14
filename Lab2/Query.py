@@ -121,7 +121,7 @@ class Query:
         :return:
         """
         self.cur.execute('select DISTINCT ename from employee NATURAL JOIN works_on where essn NOT IN (select DISTINCT '
-                         ' essn from employee NATURAL JOIN works_on where pno = %s)', self.argv_list[4])
+                         ' essn from works_on where pno = %s)', self.argv_list[4])
         data = self.cur.fetchall()
         for item in data:
             print item[0].decode('utf-8').encode('gbk')
