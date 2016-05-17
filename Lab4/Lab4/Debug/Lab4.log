@@ -1,0 +1,32 @@
+﻿生成启动时间为 2016/5/17 10:59:21。
+     1>项目“F:\GitHub\DatabaseLab\Lab4\Lab4\Lab4.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt extmem.cpp main.cpp
+         main.cpp
+     1>f:\github\databaselab\lab4\lab4\main.cpp(73): warning C4305: “return”: 从“int”到“bool”截断
+     1>f:\github\databaselab\lab4\lab4\main.cpp(88): warning C4305: “return”: 从“int”到“bool”截断
+     1>f:\github\databaselab\lab4\lab4\main.cpp(103): warning C4305: “return”: 从“int”到“bool”截断
+     1>f:\github\databaselab\lab4\lab4\main.cpp(112): warning C4305: “return”: 从“int”到“bool”截断
+     1>f:\github\databaselab\lab4\lab4\main.cpp(122): warning C4305: “return”: 从“int”到“bool”截断
+     1>f:\github\databaselab\lab4\lab4\main.cpp(134): warning C4305: “return”: 从“int”到“bool”截断
+     1>f:\github\databaselab\lab4\lab4\main.cpp(148): warning C4305: “return”: 从“int”到“bool”截断
+     1>f:\github\databaselab\lab4\lab4\main.cpp(160): warning C4305: “return”: 从“int”到“bool”截断
+     1>f:\github\databaselab\lab4\lab4\main.cpp(174): warning C4305: “return”: 从“int”到“bool”截断
+     1>f:\github\databaselab\lab4\lab4\main.cpp(183): warning C4305: “return”: 从“int”到“bool”截断
+     1>f:\github\databaselab\lab4\lab4\main.cpp(193): warning C4305: “return”: 从“int”到“bool”截断
+     1>f:\github\databaselab\lab4\lab4\main.cpp(202): warning C4305: “return”: 从“int”到“bool”截断
+     1>f:\github\databaselab\lab4\lab4\main.cpp(211): warning C4305: “return”: 从“int”到“bool”截断
+     1>f:\github\databaselab\lab4\lab4\main.cpp(225): warning C4305: “return”: 从“int”到“bool”截断
+     1>f:\github\databaselab\lab4\lab4\main.cpp(233): warning C4305: “return”: 从“int”到“bool”截断
+     1>f:\github\databaselab\lab4\lab4\main.cpp(242): error C2660: “readBlockFromDisk”: 函数不接受 1 个参数
+     1>f:\github\databaselab\lab4\lab4\main.cpp(244): warning C4305: “return”: 从“int”到“bool”截断
+         extmem.cpp
+     1>f:\github\databaselab\lab4\lab4\extmem.cpp(15): warning C4101: “i”: 未引用的局部变量
+     1>f:\github\databaselab\lab4\lab4\extmem.cpp(74): error C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(356) : 参见“sprintf”的声明
+         正在生成代码...
+     1>已完成生成项目“F:\GitHub\DatabaseLab\Lab4\Lab4\Lab4.vcxproj”(Build 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:01.78
