@@ -24,7 +24,8 @@ def student_homepage(request):
     cur.execute('select * from discipline WHERE d_name = %s', d_name)
     i_name = cur.fetchone()[1]
     # 嵌套查询
-    cur.execute('select c_no, c_name from course where c_no  in (select c_no from selection where student_no = %s)', username)
+    cur.execute('select c_no, c_name from course where c_no  in (select c_no from selection where student_no = %s)',
+                username)
     courses = cur.fetchall()
     selected = []
     for course in courses:
@@ -140,9 +141,8 @@ def manager_student(request):
     telephone = manager[4]
     email = manager[5]
     location = manager[6]
-    # 嵌套查询
-    cur.execute('select student_no, student_name from student where d_name in (select d_name from discipline where '
-                'i_name = %s)', i_name)
+    # 使用视图
+    cur.execute('select * from manager_view_student')
     students = cur.fetchall()
     info_ = []
     for student in students:
@@ -389,7 +389,6 @@ def register(request):
                     user = cur.fetchone()
                     if user:
                         return render_to_response('register_failed.html')
-                    cur.execute('insert into login values(%s, %s, %s)', (no, class_, password))
                     response = HttpResponseRedirect('/stuff_home', locals())
                     response.set_cookie('username', no, 3600*3)
                     return response
@@ -468,12 +467,18 @@ def teacher_course(request):
     location = teacher[6]
     cur.execute('select c_no, c_name from course NATURAL join teacher where t_no = %s', username.encode('utf-8'))
     courses = cur.fetchall()
-    # 分组查询
+    # 分组聚集查询
     cur.execute('select count(*) from selection group by c_no')
     number = cur.fetchall()
+    number_ = []
+    for i in range(len(courses)):
+        number_.append(0)
+    for i in range(len(number)):
+        number_[i] = number[i][0]
+
     info_ = []
     for i in range(len(courses)):
-        info = {'c_no': courses[i][0], 'c_name': courses[i][1], 'number': number[i][0]}
+        info = {'c_no': courses[i][0], 'c_name': courses[i][1], 'number': number_[i]}
         info_.append(info)
     n = len(courses)
     if n > 0:
@@ -484,7 +489,7 @@ def teacher_course(request):
 
 def teacher_delete(request):
     """
-    教室删除开设的课程
+    教师删除开设的课程
     :param request:
     :return:
     """
@@ -492,8 +497,9 @@ def teacher_delete(request):
         delete_c_no = request.GET["id"]
         cur = connection.cursor()
         # 删除选了这门课程的学生
-        cur.execute('delete from selection where c_no = %s', delete_c_no)
+        # cur.execute('delete from selection where c_no = %s', delete_c_no)
         # 删除这门课程
+        # 触发器
         cur.execute('delete from course where c_no = %s', delete_c_no)
         return HttpResponseRedirect('/teacher_course')
     return HttpResponseRedirect('/teacher_course')

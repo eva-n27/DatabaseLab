@@ -133,19 +133,49 @@ class SchoolDBSystem:
         """
         self.cur.execute('drop database school_db_system;')
 
+    def create_view(self):
+        """
+        创建视图
+        :return:
+        """
+        # self.cur.execute('create view manager_view_student as select student_no, student_name from student')
+        self.cur.execute('create view stuff_view_student as select student_no, student_name from student')
+
+    def create_index(self):
+        """
+        创建索引
+        :return:
+        """
+        # self.cur.execute('create index student_number on student(student_no)')
+        # self.cur.execute('create index student_info on student(student_no, student_name)')
+        # self.cur.execute('create index username_index on login(username)')
+        self.cur.execute('create index s_name on student(student_name)')
+
+    def create_trigger(self):
+        """
+        创建触发器
+        :return:
+        """
+        self.cur.execute('create trigger delete_student before delete on course for each row '
+                         'delete from selection where c_no = old.c_no ')
+
     def test(self):
         """
         测试sql语句
         :return:
         """
-        self.cur.execute('select count(*) from selection group by c_no')
+        self.cur.execute('select * from manager_view_student ')
         data = self.cur.fetchall()
-        print data[0][0]
+        print data[0][1]
+
 
 if __name__ == "__main__":
     s = SchoolDBSystem()
     # s.delete_database()
-    s.delete_tables()
+    # s.delete_tables()
     # s.create_database()
-    s.create_tables()
+    # s.create_tables()
+    # s.create_view()
     # s.test()
+    # s.create_index()
+    s.create_trigger()
