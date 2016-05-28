@@ -31,8 +31,7 @@ class Buffer:
         self.numFreeBlk = self.numAllBlk
         self.Data = []
         for i in range(self.numAllBlk):
-            data = [False]  # False表示块为空，True表示块中存放了数据
-            self.Data.append(data)
+            self.Data.append([False])  # False表示块为空，True表示块中存放了数据
 
     def __del__(self):
         """
@@ -61,7 +60,7 @@ class Buffer:
         解除块blk对缓冲区内存的占用，即将blk占据的内存区域标记为可用
         :return:无
         """
-        self.Data[index][0] = False
+        self.Data[index] = [False]
         self.numFreeBlk += 1
 
     def read_bloc_from_disk(self, addr):
@@ -85,7 +84,7 @@ class Buffer:
             return -1
 
         # 成功读入后再修改
-        self.Data[index][0] = True
+        self.Data[index] = [True]
         self.numFreeBlk -= 1
         self.numIO += 1
 
