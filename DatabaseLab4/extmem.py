@@ -12,7 +12,9 @@ def drop_block_on_disk(addr):
     filename = "%s.blk" % addr
     if os.path.exists(filename):
         os.remove(filename)
+        print "删除成功"
         return True
+    print "删除失败"
     return False
 
 
@@ -111,11 +113,14 @@ class Buffer:
 
         f.writelines(self.Data[index][1])
         f.close()
-        self.Data[index][0] = False
+        self.Data[index] = [False]  # 写入后该块释放
         self.numFreeBlk += 1
         self.numIO += 1
         return True
 
 
 if __name__ == '__main__':
-    pass
+    a = ['1\n', '2', '3', '4']
+    b = open('1.txt', 'w')
+    b.writelines(a)
+
