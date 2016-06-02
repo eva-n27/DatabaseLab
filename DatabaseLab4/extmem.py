@@ -29,7 +29,7 @@ class Buffer:
         self.numIO = 0
         self.bufSize = buf_size
         self.blkSize = blk_size
-        self.numAllBlk = buf_size / (blk_size + 1)
+        self.numAllBlk = buf_size / blk_size
         self.numFreeBlk = self.numAllBlk
         self.Data = []
         for i in range(self.numAllBlk):
