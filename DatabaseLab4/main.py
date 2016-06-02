@@ -14,7 +14,7 @@ def generate_data(r_, s_):
     """
     # 产生r的元组，共112个
     for i_ in range(112):
-        new_r = relation.RelationR(randint(1, 40), randint(1, 1000))
+        new_r = relation.RelationR(40, randint(1, 1000))
         r_.append(new_r)
 
     # 产生s的元组，共224个
@@ -123,7 +123,6 @@ def selection_linear(relation_, attr_, value_, blk_number_):
     relation_start_blk_number = blk_dict[relation_]
     present_blk_number = relation_start_blk_number  # 这两行代码是冗余的，但是为了程序易读，我觉得是有必要的
     write_data_ = []  # 保存满足条件的元组，会写入到文件块中
-    count = 0  # 记录已经找到的满足条件的元组个数，当元组个数达到7个时，需要写入到内存中
     write_blk_index = buffer_.get_new_block_in_buffer()  # 为选择的数据申请一个缓冲区
     if write_blk_index == -1:
         print "缓冲区已满，不能为选择的数据申请一个缓冲区"
@@ -143,42 +142,15 @@ def selection_linear(relation_, attr_, value_, blk_number_):
         # 线性搜索
         for i_ in range(number_of_tuple):
             if read_data[i_ * 2 + attr_index] == value_:
-                write_data_.extend([str(read_data[i_ * 2]), str(' '), str(read_data[i_ * 2 + 1]), str(' ')])
+                write_data_.append([read_data[i_ * 2], read_data[i_ * 2 + 1]])
                 print "关系", relation_, ":", read_data[i_ * 2], read_data[i_ * 2 + 1]
-                count += 1
-            if count == 7:
-                write_data_.append(str(blk_number_ + 1))
-                # 如果文件已经读到最后一块的最后一个分组了
-                if next_blk_number == '0' and i_ == number_of_tuple - 1:
-                    write_data_[-1] = str(0)
-                buffer_.Data[write_blk_index].append(write_data_)
-                if not buffer_.write_block_to_disk(blk_number_, write_blk_index):
-                    print "写入磁盘文件号 %s 失败" % blk_number_
-                    exit()
-                blk_number_ += 1
-                write_data_ = []
-                count = 0
-                # 新申请缓冲区
-                write_blk_index = buffer_.get_new_block_in_buffer()
 
-        # 如果最后一个磁盘块的最后一个元组都被搜索了，且没有待写的数据，则返回
-        if next_blk_number == '0' and count == 0:
-            buffer_.free_block_in_buffer(index)
-            break
-
-        # 缓冲区还有数据没有写出去
-        if next_blk_number == '0' and count != 0:
-            write_data_.append(str(0))
-            buffer_.Data[write_blk_index].append(write_data_)
-            if not buffer_.write_block_to_disk(blk_number_, write_blk_index):
-                print "写入磁盘文件号 %s 失败" % blk_number_
-                exit()
-            blk_number_ += 1
-            buffer_.free_block_in_buffer(index)
-            break
         present_blk_number = next_blk_number
         buffer_.free_block_in_buffer(index)  # 这个缓冲区的数据已经搜索完毕，释放读取关系的数据的缓冲区
+        if present_blk_number == '0':
+            break
 
+    blk_number_ = write_data(write_data_, int(ceil(len(write_data_) / 7.0)), blk_number_)
     return blk_number_
 
 
@@ -208,7 +180,6 @@ def selection_binary_search(relation_, attr_, value_, blk_number_):
     relation_start_blk_number = blk_dict[relation_]
     present_blk_number = relation_start_blk_number  # 这两行代码是冗余的，但是为了程序易读，我觉得是有必要的
     write_data_ = []  # 保存满足条件的元组，会写入到文件块中
-    count = 0  # 记录已经找到的满足条件的元组个数，当元组个数达到7个时，需要写入到内存中
     write_blk_index = buffer_.get_new_block_in_buffer()  # 为选择的数据申请一个缓冲区
     if write_blk_index == -1:
         print "缓冲区已满，不能为选择的数据申请一个缓冲区"
@@ -235,91 +206,33 @@ def selection_binary_search(relation_, attr_, value_, blk_number_):
         while search_low <= search_high:
             search_middle = (search_high - search_low) / 2 + search_low
             if sort_data[search_middle][attr_index] == value_:
-                write_data_.extend([str(sort_data[search_middle][0]), str(' '), str(sort_data[search_middle][1]),
-                                    str(' ')])
+                write_data_.append(sort_data[search_middle])
                 print "关系", relation_, ":", sort_data[search_middle]
-                count += 1
-                if count == 7:
-                    write_data_.append(str(blk_number_ + 1))
-                    # 如果文件已经读到最后一块的最后一个分组了
-                    if next_blk_number == '0' and i_ == number_of_tuple - 1:
-                        write_data_[-1] = str(0)
-                    buffer_.Data[write_blk_index].append(write_data_)
-                    if not buffer_.write_block_to_disk(blk_number_, write_blk_index):
-                        print "写入磁盘文件号 %s 失败" % blk_number_
-                        exit()
-                    blk_number_ += 1
-                    write_data_ = []
-                    count = 0
-                    # 新申请缓冲区
-                    write_blk_index = buffer_.get_new_block_in_buffer()
+
                 # 查看是否具有重复项,先看前面的，再看后面的
                 before_index = search_middle - 1  # 前面的
                 while before_index >= 0 and sort_data[before_index][attr_index] == value_:
-                    write_data_.extend([str(sort_data[search_middle][0]), str(' '), str(sort_data[search_middle][1]),
-                                        str(' ')])
-                    print "关系", relation_, ":", sort_data[search_middle]
-                    count += 1
+                    write_data_.append(sort_data[before_index])
+                    print "关系", relation_, ":", sort_data[before_index]
                     before_index -= 1
-                    if count == 7:
-                        write_data_.append(str(blk_number_ + 1))
-                        # 如果文件已经读到最后一块的最后一个分组了
-                        if next_blk_number == '0' and i_ == number_of_tuple - 1:
-                            write_data_[-1] = str(0)
-                        buffer_.Data[write_blk_index].append(write_data_)
-                        if not buffer_.write_block_to_disk(blk_number_, write_blk_index):
-                            print "写入磁盘文件号 %s 失败" % blk_number_
-                            exit()
-                        blk_number_ += 1
-                        write_data_ = []
-                        count = 0
-                        # 新申请缓冲区
-                        write_blk_index = buffer_.get_new_block_in_buffer()
+
                 after_index = search_middle + 1  # 后面的
                 while after_index < number_of_tuple and sort_data[after_index][attr_index] == value_:
-                    write_data_.extend([str(sort_data[search_middle][0]), str(' '), str(sort_data[search_middle][1]),
-                                        str(' ')])
-                    print "关系", relation_, ":", sort_data[search_middle]
-                    count += 1
+                    write_data_.append(sort_data[after_index])
+                    print "关系", relation_, ":", sort_data[after_index]
                     after_index += 1
-                    if count == 7:
-                        write_data_.append(str(blk_number_ + 1))
-                        # 如果文件已经读到最后一块的最后一个分组了
-                        if next_blk_number == '0' and i_ == number_of_tuple - 1:
-                            write_data_[-1] = str(0)
-                        buffer_.Data[write_blk_index].append(write_data_)
-                        if not buffer_.write_block_to_disk(blk_number_, write_blk_index):
-                            print "写入磁盘文件号 %s 失败" % blk_number_
-                            exit()
-                        blk_number_ += 1
-                        write_data_ = []
-                        count = 0
-                        # 新申请缓冲区
-                        write_blk_index = buffer_.get_new_block_in_buffer()
+                # 搜索下个磁盘块
                 break
             elif sort_data[search_middle][attr_index] > value_:
                 search_high = search_middle - 1
             else:
                 search_low = search_middle + 1
 
-        # 如果最后一个磁盘块的最后一个元组都被搜索了，且没有待写的数据，则返回
-        if next_blk_number == '0' and count == 0:
-            buffer_.free_block_in_buffer(index)
-            break
-
-        # 缓冲区还有数据没有写出去
-        if next_blk_number == '0' and count != 0:
-            write_data_.append(str(0))
-            buffer_.Data[write_blk_index].append(write_data_)
-            if not buffer_.write_block_to_disk(blk_number_, write_blk_index):
-                print "写入磁盘文件号 %s 失败" % blk_number_
-                exit()
-            blk_number_ += 1
-            buffer_.free_block_in_buffer(index)
-            break
         present_blk_number = next_blk_number
         buffer_.free_block_in_buffer(index)  # 这个缓冲区的数据已经搜索完毕，释放读取关系的数据的缓冲区
-
+        if present_blk_number == '0':
+            break
+    blk_number_ = write_data(write_data_, int(ceil(len(write_data_) / 7.0)), blk_number_)
     return blk_number_
 
 
@@ -526,15 +439,11 @@ if __name__ == '__main__':
     blk_number = write_relation(s, 32, blk_number)
 
     # # 选择操作：线性搜索
-    # r = 'R'
-    # a = 'A'
-    # v = '40'
-    # blk_name = '%s_select_%s' % (r, a)
     # blk_dict[blk_name] = blk_number
-    # blk_number = selection_linear(r, a, v, blk_number)
+    # blk_number = selection_linear('R', 'A', '40', blk_number)
 
-    # 选择操作：二分搜索
-    blk_number = selection_binary_search('R', 'A', '40', blk_number)
+    # # 选择操作：二分搜索
+    # blk_number = selection_binary_search('R', 'A', '40', blk_number)
 
     # # 投影操作
     # r = 'R'
