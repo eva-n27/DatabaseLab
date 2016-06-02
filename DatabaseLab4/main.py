@@ -3,7 +3,8 @@
 
 import extmem
 import relation
-import random
+from random import randint
+from math import ceil
 
 
 def generate_data(r_, s_):
@@ -13,12 +14,12 @@ def generate_data(r_, s_):
     """
     # 产生r的元组，共112个
     for i_ in range(112):
-        new_r = relation.RelationR(random.randint(1, 40), random.randint(1, 1000))
+        new_r = relation.RelationR(randint(1, 40), randint(1, 1000))
         r_.append(new_r)
 
     # 产生s的元组，共224个
     for i_ in range(224):
-        new_s = relation.RelationS(random.randint(20, 60), random.randint(1, 1000))
+        new_s = relation.RelationS(randint(20, 60), randint(1, 1000))
         s_.append(new_s)
 
 
@@ -81,12 +82,12 @@ def write_data(data_set, number_of_blk, blk_number_):
         blk_number_ += 1
 
     # 最后一个缓冲区中的数据可能不够一个缓冲块，单独处理
-    number_of_write = (number_of_blk - 1) * 7
+    number_of_written = (number_of_blk - 1) * 7  # 已经写入磁盘的数据个数
     buffer_index = buffer_.get_new_block_in_buffer()
     data = []
-    for i_ in range(len(data_set) - number_of_write):
-        data.extend([str(data_set[number_of_write + i_][0]), str(' '),
-                     str(data_set[number_of_write + i_][1]), str(' ')])
+    for i_ in range(len(data_set) - number_of_written):
+        data.extend([str(data_set[number_of_written + i_][0]), str(' '),
+                     str(data_set[number_of_written + i_][1]), str(' ')])
     data.append(str(0))
     buffer_.Data[buffer_index].append(data)
     if not buffer_.write_block_to_disk(blk_number_, buffer_index):
@@ -121,7 +122,7 @@ def selection_linear(relation_, attr_, value_, blk_number_):
     # 首先找到关系的起始文件块号
     relation_start_blk_number = blk_dict[relation_]
     present_blk_number = relation_start_blk_number  # 这两行代码是冗余的，但是为了程序易读，我觉得是有必要的
-    write_data = []  # 保存满足条件的元组，会写入到文件块中
+    write_data_ = []  # 保存满足条件的元组，会写入到文件块中
     count = 0  # 记录已经找到的满足条件的元组个数，当元组个数达到7个时，需要写入到内存中
     write_blk_index = buffer_.get_new_block_in_buffer()  # 为选择的数据申请一个缓冲区
     if write_blk_index == -1:
@@ -142,20 +143,20 @@ def selection_linear(relation_, attr_, value_, blk_number_):
         # 线性搜索
         for i_ in range(number_of_tuple):
             if read_data[i_ * 2 + attr_index] == value_:
-                write_data.extend([str(read_data[i_ * 2]), str(' '), str(read_data[i_ * 2 + 1]), str(' ')])
+                write_data_.extend([str(read_data[i_ * 2]), str(' '), str(read_data[i_ * 2 + 1]), str(' ')])
                 print "关系", relation_, ":", read_data[i_ * 2], read_data[i_ * 2 + 1]
                 count += 1
             if count == 7:
-                write_data.append(str(blk_number_ + 1))
+                write_data_.append(str(blk_number_ + 1))
                 # 如果文件已经读到最后一块的最后一个分组了
                 if next_blk_number == '0' and i_ == number_of_tuple - 1:
-                    write_data[-1] = str(0)
-                buffer_.Data[write_blk_index].append(write_data)
+                    write_data_[-1] = str(0)
+                buffer_.Data[write_blk_index].append(write_data_)
                 if not buffer_.write_block_to_disk(blk_number_, write_blk_index):
                     print "写入磁盘文件号 %s 失败" % blk_number_
                     exit()
                 blk_number_ += 1
-                write_data = []
+                write_data_ = []
                 count = 0
                 # 新申请缓冲区
                 write_blk_index = buffer_.get_new_block_in_buffer()
@@ -167,8 +168,8 @@ def selection_linear(relation_, attr_, value_, blk_number_):
 
         # 缓冲区还有数据没有写出去
         if next_blk_number == '0' and count != 0:
-            write_data.append(str(0))
-            buffer_.Data[write_blk_index].append(write_data)
+            write_data_.append(str(0))
+            buffer_.Data[write_blk_index].append(write_data_)
             if not buffer_.write_block_to_disk(blk_number_, write_blk_index):
                 print "写入磁盘文件号 %s 失败" % blk_number_
                 exit()
@@ -177,6 +178,7 @@ def selection_linear(relation_, attr_, value_, blk_number_):
             break
         present_blk_number = next_blk_number
         buffer_.free_block_in_buffer(index)  # 这个缓冲区的数据已经搜索完毕，释放读取关系的数据的缓冲区
+
     return blk_number_
 
 
@@ -203,7 +205,7 @@ def project(relation_, attr_, blk_number_):
 
     # 首先找到关系的起始文件块号
     present_blk_number = blk_dict[relation_]
-    write_data = []  # 保存满足条件的元组，会写入到文件块中
+    write_data_ = []  # 保存满足条件的元组，会写入到文件块中
     count = 0  # 记录已经找到的满足条件的元组个数，当元组个数达到7个时，需要写入到内存中
     write_blk_index = buffer_.get_new_block_in_buffer()  # 为选择的数据申请一个缓冲区
     if write_blk_index == -1:
@@ -223,20 +225,20 @@ def project(relation_, attr_, blk_number_):
 
         # 投影
         for i_ in range(number_of_tuple):
-            write_data.extend([str(read_data[i_ * 2 + attr_index]), str(' ')])
+            write_data_.extend([str(read_data[i_ * 2 + attr_index]), str(' ')])
             print "关系", relation_, ":", read_data[i_ * 2 + attr_index]
             count += 1
             if count == 7:
-                write_data.append(str(blk_number_ + 1))
+                write_data_.append(str(blk_number_ + 1))
                 # 如果文件已经读到最后一块的最后一个分组了
                 if next_blk_number == '0' and i_ == number_of_tuple - 1:
-                    write_data[-1] = str(0)
-                buffer_.Data[write_blk_index].append(write_data)
+                    write_data_[-1] = str(0)
+                buffer_.Data[write_blk_index].append(write_data_)
                 if not buffer_.write_block_to_disk(blk_number_, write_blk_index):
                     print "写入磁盘文件号 %s 失败" % blk_number_
                     exit()
                 blk_number_ += 1
-                write_data = []
+                write_data_ = []
                 count = 0
                 # 新申请缓冲区
                 write_blk_index = buffer_.get_new_block_in_buffer()
@@ -248,8 +250,8 @@ def project(relation_, attr_, blk_number_):
 
         # 缓冲区还有数据没有写出去
         if next_blk_number == '0' and count != 0:
-            write_data.append(str(0))
-            buffer_.Data[write_blk_index].append(write_data)
+            write_data_.append(str(0))
+            buffer_.Data[write_blk_index].append(write_data_)
             if not buffer_.write_block_to_disk(blk_number_, write_blk_index):
                 print "写入磁盘文件号 %s 失败" % blk_number_
                 exit()
@@ -258,25 +260,25 @@ def project(relation_, attr_, blk_number_):
             break
         present_blk_number = next_blk_number
         buffer_.free_block_in_buffer(index)  # 这个缓冲区的数据已经搜索完毕，释放读取关系的数据的缓冲区
+
     return blk_number_
 
 
-def union(relation_first, relation_second, blk_number_):
+def set_operate(relation_first, relation_second, operation, blk_number_):
     """
-    实现集合操作：并
-    :param relation_first:关系
-    :param relation_second:关系
-    :param blk_number_:磁盘好号
+    实现集合操作：并, 交， 差
+    :param relation_first: 关系
+    :param relation_second: 关系
+    :param operation: 操作
+    :param blk_number_: 磁盘号
     :return:
     """
     if relation_first != 'R' and relation_first != 'S':
         print "关系名称错误"
-        return
+        return blk_number_
     elif relation_second != 'R' and relation_second != 'S':
         print "关系名称错误"
-        return
-
-    union_data = []
+        return blk_number_
 
     first_data = []
     # 首先找到第一个关系的起始文件块号
@@ -295,14 +297,11 @@ def union(relation_first, relation_second, blk_number_):
         # 读取所有的元组
         for i_ in range(number_of_tuple):
             first_data.append([read_data[i_ * 2], read_data[i_ * 2 + 1]])
-            print "关系", relation_first, ":", read_data[i_ * 2], read_data[i_ * 2 + 1]
         present_blk_number = next_blk_number
         buffer_.free_block_in_buffer(index)  # 这个缓冲区的数据已经搜索完毕，释放读取关系的数据的缓冲区
         # 读完退出
         if present_blk_number == '0':
             break
-
-    union_data.extend(first_data)
 
     second_data = []
     # 首先找到第二个关系的起始文件块号
@@ -321,29 +320,48 @@ def union(relation_first, relation_second, blk_number_):
         # 读取所有的元组
         for i_ in range(number_of_tuple):
             second_data.append([read_data[i_ * 2], read_data[i_ * 2 + 1]])
-            print "关系", relation_second, ":", read_data[i_ * 2], read_data[i_ * 2 + 1]
         present_blk_number = next_blk_number
         buffer_.free_block_in_buffer(index)  # 这个缓冲区的数据已经搜索完毕，释放读取关系的数据的缓冲区
         # 读完退出
         if present_blk_number == '0':
             break
 
-    union_data.extend(second_data)
+    write_data_ = []
+    if operation == 'union':  # 并
+        union_data = []
+        union_data.extend(first_data)
+        union_data.extend(second_data)
+        # 去重复
+        for item in union_data:
+            if union_data.count(item) > 1:
+                print "关系", relation_first, '并', relation_second, ":", item[0], item[1]
+                for i_ in range(union_data.count(item) - 1):
+                    union_data.remove(item)
+            else:
+                print "关系", relation_first, '并', relation_second, ":", item[0], item[1]
+        write_data_ = union_data
+    elif operation == 'intersect':  # 交
+        intersect_data = []
+        for item in first_data:
+            if item in second_data:
+                intersect_data.append(item)
+                print "关系", relation_first, '交', relation_second, ":", item[0], item[1]
+        write_data_ = intersect_data
+    elif operation == 'except':  # 差
+        except_data = []
+        for item in first_data:
+            if item not in second_data:
+                except_data.append(item)
+                print "关系", relation_first, '差', relation_second, ":", item[0], item[1]
+        write_data_ = except_data
 
-    # 去重复
-    for item in union_data:
-        if union_data.count(item) > 1:
-            print item
-            for i_ in range(union_data.count(item) - 1):
-                union_data.remove(item)
+    number_of_buffer_blk = int(ceil(len(write_data_) / 7.0))
+    blk_number_ = write_data(write_data_, number_of_buffer_blk, blk_number_)
 
-    # 写入磁盘
-    number_of_buffer_blk = int(len(union_data) / 7.0 + 0.5)
-    blk_number_ = write_data(union_data, number_of_buffer_blk, blk_number_)
     return blk_number_
 
 if __name__ == '__main__':
-    blk_number = 0  # 磁盘文件号
+    blk_number = 3  # 磁盘文件号
     blk_dict = {}  # 用于记录关系和关系存放的第一个文件块的编号
 
     # 创建缓冲区
@@ -357,12 +375,14 @@ if __name__ == '__main__':
     generate_data(r, s)
 
     # 将r写入到磁盘中
-    blk_dict['R'] = blk_number
-    blk_number = write_relation(r, 16, blk_number)
+    blk_dict['R'] = 0
+    # blk_dict['R'] = blk_number
+    # blk_number = write_relation(r, 1, blk_number)
 
     # 将s写入到磁盘中
-    blk_dict['S'] = blk_number
-    blk_number = write_relation(s, 32, blk_number)
+    blk_dict['S'] = 1
+    # blk_dict['S'] = blk_number
+    # blk_number = write_relation(s, 2, blk_number)
 
     # # 选择操作
     # r = 'R'
@@ -379,5 +399,6 @@ if __name__ == '__main__':
     # blk_dict[blk_name] = blk_number
     # blk_number = project(r, a, blk_number)
 
-    # 并操作
-    # blk_number = union('R', 'S', blk_number)
+    # 集合操作
+    blk_number = set_operate('R', 'S', 'intersect', blk_number)
+
