@@ -2,13 +2,13 @@
 # coding:utf-8
 
 
-class relation_r():
+class RelationR:
     def __init__(self, a, b):
-        self.attr_a = a
-        self.attr_b = b
+        self.first_attr = a  # 属性A
+        self.second_attr = b  # 属性B
 
 
-class relation_s():
+class RelationS:
     def __init__(self, c, d):
-        self.attr_c = c
-        self.attr_d = d
+        self.first_attr = c  # 属性C
+        self.second_attr = d  # 属性D

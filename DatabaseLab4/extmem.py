@@ -93,6 +93,7 @@ class Buffer:
         data = []
         lines = f.readlines()
         for line in lines:
+            line = line.split()  # 去掉blk文件中的空格
             data.extend(line)
 
         self.Data[index].append(data)
@@ -120,7 +121,5 @@ class Buffer:
 
 
 if __name__ == '__main__':
-    a = ['1\n', '2', '3', '4']
-    b = open('1.txt', 'w')
-    b.writelines(a)
+    pass
 
