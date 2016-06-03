@@ -549,6 +549,89 @@ def sort_merge_join(relation_first, relation_second, blk_number_):
     blk_number_ = write_data(write_data_, int(ceil(len(write_data_) / 5.0)), 5, blk_number_)
     return blk_number_
 
+
+def hash_join(relation_first, relation_second, number_of_bucket, blk_number_):
+    """
+    实现Hash Join
+    :param relation_first:关系
+    :param relation_second:关系
+    :param number_of_bucket:hash的桶的个数
+    :param blk_number_:磁盘块号
+    :return:磁盘块号
+    """
+    if relation_first != 'R' and relation_first != 'S':
+        print "关系名称错误"
+        return blk_number_
+    elif relation_second != 'R' and relation_second != 'S':
+        print "关系名称错误"
+        return blk_number_
+
+    # 构造桶
+    bucket_of_r = []
+    bucket_of_s = []
+    for i_ in range(number_of_bucket):
+        bucket_of_r.append([])
+        bucket_of_s.append([])
+
+    # 首先找到第一个关系的起始文件块号
+    present_blk_number = blk_dict[relation_first]
+    # 然后读取第一个关系的数据
+    while True:
+        index = buffer_.read_bloc_from_disk(present_blk_number)  # 为关系的数据申请一个缓冲
+        if index == -1:
+            print "缓冲区已满，不能为关系的数据申请一个缓冲区"
+            break
+
+        read_data = buffer_.Data[index][1]  # 从磁盘块中读取的数据
+        number_of_tuple = (len(read_data) - 1) / 2
+        next_blk_number = read_data[-1]  # 文件的后继磁盘块号
+
+        # 读取所有的元组
+        for i_ in range(number_of_tuple):
+            bucket_index = (int(read_data[i_ * 2]) + 2) % number_of_bucket  # hash一下
+            bucket_of_r[bucket_index].append([int(read_data[i_ * 2]), int(read_data[i_ * 2 + 1])])
+        present_blk_number = next_blk_number
+        buffer_.free_block_in_buffer(index)  # 这个缓冲区的数据已经搜索完毕，释放读取关系的数据的缓冲区
+        # 读完退出
+        if present_blk_number == '0':
+            break
+
+    # 首先找到第二个关系的起始文件块号
+    present_blk_number = blk_dict[relation_second]
+    # 然后读取第二个关系的数据
+    while True:
+        index = buffer_.read_bloc_from_disk(present_blk_number)  # 为关系的数据申请一个缓冲
+        if index == -1:
+            print "缓冲区已满，不能为关系的数据申请一个缓冲区"
+            break
+
+        read_data = buffer_.Data[index][1]  # 从磁盘块中读取的数据
+        number_of_tuple = (len(read_data) - 1) / 2
+        next_blk_number = read_data[-1]  # 文件的后继磁盘块号
+
+        # 读取所有的元组
+        for i_ in range(number_of_tuple):
+            bucket_index = (int(read_data[i_ * 2]) + 2) % number_of_bucket  # hash一下
+            bucket_of_s[bucket_index].append([int(read_data[i_ * 2]), int(read_data[i_ * 2 + 1])])
+        present_blk_number = next_blk_number
+        buffer_.free_block_in_buffer(index)  # 这个缓冲区的数据已经搜索完毕，释放读取关系的数据的缓冲区
+        # 读完退出
+        if present_blk_number == '0':
+            break
+    # join
+    write_data_ = []
+    for i_ in range(number_of_bucket):
+        for j_ in range(len(bucket_of_r[i_])):
+            for k_ in range(len(bucket_of_s[i_])):
+                if bucket_of_r[i_][j_][0] == bucket_of_s[i_][k_][0]:
+                    write_data_.append([bucket_of_r[i_][j_][0], bucket_of_r[i_][j_][1], bucket_of_s[i_][k_][1]])
+                    print '关系', relation_first, '的元组', bucket_of_r[i_][j_], '和关系', relation_second, '的元组', \
+                        bucket_of_s[i_][k_], '连接'
+
+    blk_number_ = write_data(write_data_, int(ceil(len(write_data_) / 5.0)), 5, blk_number_)
+    return blk_number_
+
+
 if __name__ == '__main__':
     blk_number = 0  # 磁盘文件号
     blk_numbers_of_R = 5  # 关系R的磁盘块数
@@ -593,6 +676,9 @@ if __name__ == '__main__':
     # # nest-loop-join
     # blk_number = nest_loop_join('R', 'S', blk_numbers_of_R, blk_numbers_of_S, blk_number)
 
-    # sort_merge_join
+    # # sort_merge_join
     # blk_number = sort_merge_join('R', 'S', blk_number)
+
+    # # hash_join
+    # blk_number = hash_join('R', 'S', 5, blk_number)
 
