@@ -202,7 +202,7 @@ def selection_binary_search(relation_, attr_, value_, blk_number_):
         # 二分查找
         sort_data = []
         for i_ in range(number_of_tuple):
-            sort_data.append([read_data[i_ * 2], read_data[i_ * 2 + 1]])
+            sort_data.append([int(read_data[i_ * 2]), int(read_data[i_ * 2 + 1])])
         sort_data = sorted(sort_data, key=lambda t: t[attr_index])
         search_low = 0  # 搜索起始低位置
         search_high = number_of_tuple - 1  # 搜索起始高位置
@@ -440,7 +440,8 @@ def nest_loop_join(relation_first, relation_second, blk_numbers_of_first, blk_nu
             for i_ in range(out_number_of_tuple):
                 for j_ in range(in_number_of_tuple):
                     if out_read_data[i_ * 2] == in_read_data[j_ * 2]:
-                        write_data_.append([out_read_data[i_ * 2], out_read_data[i_ * 2 + 1], in_read_data[j_ * 2 + 1]])
+                        write_data_.append([int(out_read_data[i_ * 2]), int(out_read_data[i_ * 2 + 1]),
+                                            int(in_read_data[j_ * 2 + 1])])
                         print '关系', out_relation, '的元组', [out_read_data[i_ * 2], out_read_data[i_ * 2 + 1]], \
                             '和关系', in_relation, '的元组', [in_read_data[j_ * 2], in_read_data[j_ * 2 + 1]], '连接'
             in_present_blk_number = in_next_blk_number
@@ -457,10 +458,101 @@ def nest_loop_join(relation_first, relation_second, blk_numbers_of_first, blk_nu
     return blk_number_
 
 
+def sort_merge_join(relation_first, relation_second, blk_number_):
+    """
+    实现Sort Merge Join
+    :param relation_first:关系
+    :param relation_second:关系
+    :param blk_number_:磁盘块号
+    :return:磁盘块号
+    """
+    if relation_first != 'R' and relation_first != 'S':
+        print "关系名称错误"
+        return blk_number_
+    elif relation_second != 'R' and relation_second != 'S':
+        print "关系名称错误"
+        return blk_number_
+
+    first_data = []
+    # 首先找到第一个关系的起始文件块号
+    present_blk_number = blk_dict[relation_first]
+    # 然后读取第一个关系的数据
+    while True:
+        index = buffer_.read_bloc_from_disk(present_blk_number)  # 为关系的数据申请一个缓冲
+        if index == -1:
+            print "缓冲区已满，不能为关系的数据申请一个缓冲区"
+            break
+
+        read_data = buffer_.Data[index][1]  # 从磁盘块中读取的数据
+        number_of_tuple = (len(read_data) - 1) / 2
+        next_blk_number = read_data[-1]  # 文件的后继磁盘块号
+
+        # 读取所有的元组
+        for i_ in range(number_of_tuple):
+            first_data.append([int(read_data[i_ * 2]), int(read_data[i_ * 2 + 1])])
+        present_blk_number = next_blk_number
+        buffer_.free_block_in_buffer(index)  # 这个缓冲区的数据已经搜索完毕，释放读取关系的数据的缓冲区
+        # 读完退出
+        if present_blk_number == '0':
+            break
+
+    second_data = []
+    # 首先找到第二个关系的起始文件块号
+    present_blk_number = blk_dict[relation_second]
+    # 然后读取第二个关系的数据
+    while True:
+        index = buffer_.read_bloc_from_disk(present_blk_number)  # 为关系的数据申请一个缓冲
+        if index == -1:
+            print "缓冲区已满，不能为关系的数据申请一个缓冲区"
+            break
+
+        read_data = buffer_.Data[index][1]  # 从磁盘块中读取的数据
+        number_of_tuple = (len(read_data) - 1) / 2
+        next_blk_number = read_data[-1]  # 文件的后继磁盘块号
+
+        # 读取所有的元组
+        for i_ in range(number_of_tuple):
+            second_data.append([int(read_data[i_ * 2]), int(read_data[i_ * 2 + 1])])
+        present_blk_number = next_blk_number
+        buffer_.free_block_in_buffer(index)  # 这个缓冲区的数据已经搜索完毕，释放读取关系的数据的缓冲区
+        # 读完退出
+        if present_blk_number == '0':
+            break
+    # sort
+    first_data = sorted(first_data, key=lambda t: t[0])
+    second_data = sorted(second_data, key=lambda t: t[0])
+
+    # merge
+    write_data_ = []
+    i_ = 0
+    j_ = 0
+    while i_ < len(first_data) or j_ < len(second_data):
+        if i_ < len(first_data) and j_ < len(second_data):
+            if first_data[i_][0] == second_data[j_][0]:
+                write_data_.append([first_data[i_][0], first_data[i_][1], second_data[j_][1]])
+                print '关系', relation_first, '的元组', first_data[i_], \
+                    '和关系', relation_second, '的元组', second_data[j_], '连接'
+                temp_index = j_ + 1  # 让第二个关系先移动
+                while temp_index < len(second_data) and first_data[i_][0] == second_data[temp_index][0]:
+                    write_data_.append([first_data[i_][0], first_data[i_][1], second_data[temp_index][1]])
+                    print '关系', relation_first, '的元组', first_data[i_], \
+                        '和关系', relation_second, '的元组', second_data[temp_index], '连接'
+                    temp_index += 1
+                i_ += 1  # 只移动第二个关系不移动第一个关系
+            elif first_data[i_][0] < second_data[j_][0]:
+                i_ += 1
+            elif first_data[i_][0] > second_data[j_][0]:
+                j_ += 1
+        else:
+            break
+
+    blk_number_ = write_data(write_data_, int(ceil(len(write_data_) / 5.0)), 5, blk_number_)
+    return blk_number_
+
 if __name__ == '__main__':
     blk_number = 0  # 磁盘文件号
-    blk_numbers_of_R = 16  # 关系R的磁盘块数
-    blk_numbers_of_S = 32  # 关系S的磁盘块数
+    blk_numbers_of_R = 5  # 关系R的磁盘块数
+    blk_numbers_of_S = 6  # 关系S的磁盘块数
     blk_dict = {}  # 用于记录关系和关系存放的第一个文件块的编号
 
     # 创建缓冲区
@@ -479,7 +571,7 @@ if __name__ == '__main__':
     blk_number = write_relation(r, blk_numbers_of_R, blk_number)
 
     # 将s写入到磁盘中
-    # blk_dict['S'] = 1
+    # blk_dict['S'] = 16
     blk_dict['S'] = blk_number
     blk_number = write_relation(s, blk_numbers_of_S, blk_number)
 
@@ -500,4 +592,7 @@ if __name__ == '__main__':
 
     # # nest-loop-join
     # blk_number = nest_loop_join('R', 'S', blk_numbers_of_R, blk_numbers_of_S, blk_number)
+
+    # sort_merge_join
+    # blk_number = sort_merge_join('R', 'S', blk_number)
 
