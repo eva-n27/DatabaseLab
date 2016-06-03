@@ -15,6 +15,7 @@ def generate_data(r_, s_):
     # 产生r的元组，共112个
     for i_ in range(112):
         new_r = relation.RelationR(randint(1, 40), randint(1, 1000))
+        # new_r = relation.RelationR(40, randint(1, 1000))
         r_.append(new_r)
 
     # 产生s的元组，共224个
@@ -97,6 +98,7 @@ def write_data(data_set, number_of_blk, tuple_number, blk_number_):
         print "写入磁盘文件号 %s 失败" % blk_number_
         exit()
     blk_number_ += 1
+
     return blk_number_
 
 
@@ -144,7 +146,7 @@ def selection_linear(relation_, attr_, value_, blk_number_):
 
         # 线性搜索
         for i_ in range(number_of_tuple):
-            if read_data[i_ * 2 + attr_index] == value_:
+            if int(read_data[i_ * 2 + attr_index]) == value_:
                 write_data_.append([read_data[i_ * 2], read_data[i_ * 2 + 1]])
                 print "关系", relation_, ":", read_data[i_ * 2], read_data[i_ * 2 + 1]
 
@@ -152,6 +154,10 @@ def selection_linear(relation_, attr_, value_, blk_number_):
         buffer_.free_block_in_buffer(index)  # 这个缓冲区的数据已经搜索完毕，释放读取关系的数据的缓冲区
         if present_blk_number == '0':
             break
+
+    if len(write_data_) == 0:
+        print "没有对应的数据"
+        return blk_number_
 
     blk_number_ = write_data(write_data_, int(ceil(len(write_data_) / 7.0)), 7, blk_number_)
     return blk_number_
@@ -164,7 +170,7 @@ def selection_binary_search(relation_, attr_, value_, blk_number_):
     :param value_:查找的值
     :param attr_:选择的属性
     :param blk_number_:文件块号
-    :return:暂时没有返回值
+    :return:磁盘号
     """
     if relation_ != 'R' and relation_ != 'S':
         print "关系名称错误"
@@ -235,6 +241,176 @@ def selection_binary_search(relation_, attr_, value_, blk_number_):
         buffer_.free_block_in_buffer(index)  # 这个缓冲区的数据已经搜索完毕，释放读取关系的数据的缓冲区
         if present_blk_number == '0':
             break
+
+    if len(write_data_) == 0:
+        print "没有对应的数据"
+        return blk_number_
+
+    blk_number_ = write_data(write_data_, int(ceil(len(write_data_) / 7.0)), 7, blk_number_)
+    return blk_number_
+
+
+def sort_for_index(relation_, index_table_, attr_index_, blk_number_):
+    """
+    将随机生成关系的blk文件进行排序，然后再写入新的blk文件中
+    :param relation_:关系
+    :param index_table_:索引表
+    :param attr_index_:表示第几个属性
+    :param blk_number_:磁盘块号
+    :return:索引表和磁盘块号
+    """
+    data = []
+    # 首先找到第一个关系的起始文件块号
+    present_blk_number = blk_dict[relation_]
+
+    # 然后读取第一个关系的数据
+    while True:
+        index = buffer_.read_bloc_from_disk(present_blk_number)  # 为关系的数据申请一个缓冲
+        if index == -1:
+            print "缓冲区已满，不能为关系的数据申请一个缓冲区"
+            break
+
+        read_data = buffer_.Data[index][1]  # 从磁盘块中读取的数据
+        number_of_tuple = (len(read_data) - 1) / 2
+        next_blk_number = read_data[-1]  # 文件的后继磁盘块号
+
+        # 读取所有的元组
+        for i_ in range(number_of_tuple):
+            data.append([int(read_data[i_ * 2]), int(read_data[i_ * 2 + 1])])
+        present_blk_number = next_blk_number
+        buffer_.free_block_in_buffer(index)  # 这个缓冲区的数据已经搜索完毕，释放读取关系的数据的缓冲区
+        # 读完退出
+        if present_blk_number == '0':
+            break
+
+    # 先建立好索引，然后再写入磁盘块
+    index_blk_number = blk_number_
+    data = sorted(data, key=lambda t: t[attr_index_])
+    index_table_, index_blk_number = create_index(data, attr_index_, index_table_, index_blk_number)
+
+    if len(data) == 0:
+        print "没有对应的数据"
+        return blk_number_
+
+    blk_number_ = write_data(data, int(ceil(len(data) / 7.0)), 7, blk_number_)
+
+    if index_blk_number != blk_number_:
+        print "索引建的有问题"
+        exit()
+
+    return index_table_, blk_number_
+
+
+def create_index(data, attr_index, index_table_, blk_number_):
+    """
+    为data创建索引表项
+    :param data: 数据
+    :param attr_index: 表示第几个属性
+    :param index_table_: 索引表
+    :param blk_number_: 磁盘号
+    :return: 索引表
+    """
+    index = 0
+    while index < len(data):
+        if index + 7 < len(data) and data[index][attr_index] < data[index + 7][attr_index]:
+            index_table_.append([data[index][attr_index], blk_number_])
+            blk_number_ += 1
+            index += 7
+        elif index + 7 < len(data) and data[index][attr_index] == data[index + 7][attr_index]:
+            index_table_.append([data[index][attr_index], blk_number_])
+            blk_number_ += 1
+            index += 7
+            count = 1
+            while index + 7 * count < len(data) and data[index + 7 * count - 1][attr_index] \
+                    == data[index + 7 * count][attr_index]:
+                count += 1
+            if index + 7 > len(data):
+                blk_number_ += count
+                break
+            else:
+                index += 7 * count
+                blk_number_ += count
+        else:
+            index_table_.append([data[index][attr_index], blk_number_])
+            blk_number_ += 1
+            break
+    return index_table_, blk_number_
+
+
+def selection_index(relation_, attr_, value_, blk_number_):
+    """
+    基于线性查找的关系选择算法，需要使用sort_for_index和create_index
+    :param relation_:查找的关系，是一个string
+    :param value_:查找的值
+    :param attr_:选择的属性
+    :param blk_number_:文件块号
+    :return:磁盘号
+    """
+    if relation_ != 'R' and relation_ != 'S':
+        print "关系名称错误"
+        return blk_number_
+    # 看选择的属性是第一个属性还是第二个属性
+    if attr_ == 'A' or attr_ == 'C':
+        attr_index = 0
+    elif attr_ == 'B' or attr_ == 'D':
+        attr_index = 1
+    else:
+        print "属性输入错误"
+        return blk_number_
+
+    index_table = []  # 索引表
+    index_table, blk_number_ = sort_for_index(relation_, index_table, attr_index, blk_number_)
+    index_table = sorted(index_table, key=lambda t: t[0])
+
+    hit_blk_number = -1  # 找到
+    for i in range(len(index_table)):
+        if index_table[i][0] == value_:
+            hit_blk_number = index_table[i][1]
+            break
+        elif index_table[i][0] < value_:
+            hit_blk_number = index_table[i][1]
+        else:
+            break
+    if hit_blk_number == -1:
+        print "没找到指定记录"
+        return blk_number_
+
+    present_blk_number = hit_blk_number  # 这两行代码是冗余的，但是为了程序易读，我觉得是有必要的
+    write_data_ = []  # 保存满足条件的元组，会写入到文件块中
+    write_blk_index = buffer_.get_new_block_in_buffer()  # 为选择的数据申请一个缓冲区
+    if write_blk_index == -1:
+        print "缓冲区已满，不能为选择的数据申请一个缓冲区"
+        return blk_number_
+
+    # 读取选择的关系的所有的磁盘块,注意每次读取一个blk文件，搜索完之后需要释放，为选择到的数据申请的缓冲区也一样需要释放
+    while True:
+        index = buffer_.read_bloc_from_disk(present_blk_number)  # 为关系的数据申请一个缓冲
+        if index == -1:
+            print "缓冲区已满，不能为关系的数据申请一个缓冲区"
+            break
+
+        read_data = buffer_.Data[index][1]  # 从磁盘块中读取的数据
+        number_of_tuple = (len(read_data) - 1) / 2
+        next_blk_number = read_data[-1]  # 文件的后继磁盘块号
+
+        # 搜索对应元组
+        for i_ in range(number_of_tuple):
+            if int(read_data[i_ * 2 + attr_index]) == value_:
+                write_data_.append([int(read_data[i_ * 2]), int(read_data[i_ * 2 + 1])])
+                print "关系", relation_, ":", read_data[i_ * 2], read_data[i_ * 2 + 1]
+            elif int(read_data[i_ * 2 + attr_index]) > value_:
+                next_blk_number = '0'
+                break
+
+        present_blk_number = next_blk_number
+        buffer_.free_block_in_buffer(index)
+        if present_blk_number == '0':
+            break
+
+    if len(write_data_) == 0:
+        print "没有对应的数据"
+        return blk_number_
+
     blk_number_ = write_data(write_data_, int(ceil(len(write_data_) / 7.0)), 7, blk_number_)
     return blk_number_
 
@@ -288,6 +464,11 @@ def project(relation_, attr_, blk_number_):
         buffer_.free_block_in_buffer(index)  # 这个缓冲区的数据已经搜索完毕，释放读取关系的数据的缓冲区
         if present_blk_number == '0':
             break
+
+    if len(write_data_) == 0:
+        print "没有对应的数据"
+        return blk_number_
+
     blk_number_ = write_data(write_data_, int(ceil(len(write_data_) / 14.0)), 14, blk_number_)
     return blk_number_
 
@@ -383,8 +564,11 @@ def set_operate(relation_first, relation_second, operation, blk_number_):
                 print "关系", relation_first, '差', relation_second, ":", item[0], item[1]
         write_data_ = except_data
 
-    number_of_buffer_blk = int(ceil(len(write_data_) / 7.0))
-    blk_number_ = write_data(write_data_, number_of_buffer_blk, blk_number_)
+    if len(write_data_) == 0:
+        print "没有对应的数据"
+        return blk_number_
+
+    blk_number_ = write_data(write_data_, int(ceil(len(write_data_) / 7.0)), 7,  blk_number_)
 
     return blk_number_
 
@@ -453,6 +637,10 @@ def nest_loop_join(relation_first, relation_second, blk_numbers_of_first, blk_nu
         buffer_.free_block_in_buffer(out_index)  # 这个缓冲区的数据已经搜索完毕，释放读取关系的数据的缓冲区
         if out_present_blk_number == '0':
             break
+
+    if len(write_data_) == 0:
+        print "没有对应的数据"
+        return blk_number_
 
     blk_number_ = write_data(write_data_, int(ceil(len(write_data_) / 5.0)), 5, blk_number_)
     return blk_number_
@@ -546,6 +734,10 @@ def sort_merge_join(relation_first, relation_second, blk_number_):
         else:
             break
 
+    if len(write_data_) == 0:
+        print "没有对应的数据"
+        return blk_number_
+
     blk_number_ = write_data(write_data_, int(ceil(len(write_data_) / 5.0)), 5, blk_number_)
     return blk_number_
 
@@ -628,14 +820,18 @@ def hash_join(relation_first, relation_second, number_of_bucket, blk_number_):
                     print '关系', relation_first, '的元组', bucket_of_r[i_][j_], '和关系', relation_second, '的元组', \
                         bucket_of_s[i_][k_], '连接'
 
+    if len(write_data_) == 0:
+        print "没有对应的数据"
+        return blk_number_
+
     blk_number_ = write_data(write_data_, int(ceil(len(write_data_) / 5.0)), 5, blk_number_)
     return blk_number_
 
 
 if __name__ == '__main__':
     blk_number = 0  # 磁盘文件号
-    blk_numbers_of_R = 5  # 关系R的磁盘块数
-    blk_numbers_of_S = 6  # 关系S的磁盘块数
+    blk_numbers_of_R = 16  # 关系R的磁盘块数
+    blk_numbers_of_S = 32  # 关系S的磁盘块数
     blk_dict = {}  # 用于记录关系和关系存放的第一个文件块的编号
 
     # 创建缓冲区
@@ -655,15 +851,18 @@ if __name__ == '__main__':
 
     # 将s写入到磁盘中
     # blk_dict['S'] = 16
-    blk_dict['S'] = blk_number
-    blk_number = write_relation(s, blk_numbers_of_S, blk_number)
+    # blk_dict['S'] = blk_number
+    # blk_number = write_relation(s, blk_numbers_of_S, blk_number)
 
     # # 选择操作：线性搜索
     # blk_dict[blk_name] = blk_number
-    # blk_number = selection_linear('R', 'A', '40', blk_number)
+    # blk_number = selection_linear('R', 'A', 40, blk_number)
 
     # # 选择操作：二分搜索
-    # blk_number = selection_binary_search('R', 'A', '40', blk_number)
+    # blk_number = selection_binary_search('R', 'A', 40, blk_number)
+
+    # # 选择操作：索引搜索
+    # blk_number = selection_index('R', 'A', 40, blk_number)
 
     # # 投影操作
     # blk_name = '%s_project_%s' % (r, a)
