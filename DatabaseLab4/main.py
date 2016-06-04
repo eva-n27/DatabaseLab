@@ -14,13 +14,13 @@ def generate_data(r_, s_):
     """
     # 产生r的元组，共112个
     for i_ in range(112):
-        new_r = relation.RelationR(randint(1, 40), randint(1, 1000))
-        # new_r = relation.RelationR(40, randint(1, 1000))
+        # new_r = relation.RelationR(randint(1, 40), randint(1, 1000))
+        new_r = relation.RelationR(40, randint(1, 1000))
         r_.append(new_r)
 
     # 产生s的元组，共224个
     for i_ in range(224):
-        new_s = relation.RelationS(randint(20, 60), randint(1, 1000))
+        new_s = relation.RelationS(40, randint(1, 1000))
         s_.append(new_s)
 
 
@@ -830,8 +830,8 @@ def hash_join(relation_first, relation_second, number_of_bucket, blk_number_):
 
 if __name__ == '__main__':
     blk_number = 0  # 磁盘文件号
-    blk_numbers_of_R = 16  # 关系R的磁盘块数
-    blk_numbers_of_S = 32  # 关系S的磁盘块数
+    blk_numbers_of_R = 6  # 关系R的磁盘块数
+    blk_numbers_of_S = 4  # 关系S的磁盘块数
     blk_dict = {}  # 用于记录关系和关系存放的第一个文件块的编号
 
     # 创建缓冲区
@@ -846,38 +846,45 @@ if __name__ == '__main__':
 
     # 将r写入到磁盘中
     # blk_dict['R'] = 0
+    print '关系R'
     blk_dict['R'] = blk_number
     blk_number = write_relation(r, blk_numbers_of_R, blk_number)
 
     # 将s写入到磁盘中
     # blk_dict['S'] = 16
-    # blk_dict['S'] = blk_number
-    # blk_number = write_relation(s, blk_numbers_of_S, blk_number)
+    print '关系S'
+    blk_dict['S'] = blk_number
+    blk_number = write_relation(s, blk_numbers_of_S, blk_number)
 
     # # 选择操作：线性搜索
-    # blk_dict[blk_name] = blk_number
+    # print "线性搜索"
     # blk_number = selection_linear('R', 'A', 40, blk_number)
 
     # # 选择操作：二分搜索
+    # print "二分搜索"
     # blk_number = selection_binary_search('R', 'A', 40, blk_number)
 
     # # 选择操作：索引搜索
+    # print "索引搜索"
     # blk_number = selection_index('R', 'A', 40, blk_number)
 
     # # 投影操作
-    # blk_name = '%s_project_%s' % (r, a)
-    # blk_dict[blk_name] = blk_number
+    # print "投影操作"
     # blk_number = project('R', 'A', blk_number)
 
     # # 集合操作
-    # blk_number = set_operate('R', 'S', 'intersect', blk_number)
+    # print "集合操作"
+    # blk_number = set_operate('R', 'S', 'except', blk_number)
 
     # # nest-loop-join
+    # print "nest-loop-join", blk_number
     # blk_number = nest_loop_join('R', 'S', blk_numbers_of_R, blk_numbers_of_S, blk_number)
 
     # # sort_merge_join
+    # print "sort_merge_join", blk_number
     # blk_number = sort_merge_join('R', 'S', blk_number)
 
     # # hash_join
+    # print "hash_join", blk_number
     # blk_number = hash_join('R', 'S', 5, blk_number)
 
